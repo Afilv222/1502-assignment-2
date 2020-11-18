@@ -64,7 +64,11 @@ public class Elevator {
 	public void call(Floor floor) {
 		this.destinationFloor = floor;
 		
-		// may want to create a private method to do this
+		setElevatorDirection();
+	}
+	
+	private void setElevatorDirection(){
+		
 		int destinationIndex = floors.indexOf(destinationFloor);  
 		int currentIndex = floors.indexOf(currentFloor); 
 		
@@ -75,9 +79,8 @@ public class Elevator {
 		} else {
 			elevatorDirection = Direction.HOLDING;
 		}
-		
 	}
-
+	
 	public Person exit() {
 		Person exiter = rider;
 		rider = null;
