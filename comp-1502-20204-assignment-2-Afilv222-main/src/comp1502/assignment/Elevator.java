@@ -7,7 +7,7 @@ public class Elevator {
 	private enum Direction {MOVING_UP, MOVING_DOWN, HOLDING}; 
 	
 	private String name;
-	private ArrayList<Floor> floors; // Test
+	private ArrayList<Floor> floors;
 	
 	private Floor currentFloor;
 	private Floor destinationFloor;
@@ -65,8 +65,8 @@ public class Elevator {
 		this.destinationFloor = floor;
 		
 		// may want to create a private method to do this
-		int destinationIndex = floors.indexOf(destinationFloor);
-		int currentIndex = floors.indexOf(currentFloor);
+		int destinationIndex = floors.indexOf(destinationFloor);  
+		int currentIndex = floors.indexOf(currentFloor); 
 		
 		if (destinationIndex > currentIndex) {
 			elevatorDirection = Direction.MOVING_UP;
@@ -84,7 +84,7 @@ public class Elevator {
 		return exiter;
 	}
 
-	public void move() {
+	public void move() { 
 		if (elevatorDirection == Direction.HOLDING) {
 			return;
 		} else if (elevatorDirection == Direction.MOVING_UP) {
