@@ -11,7 +11,7 @@ public class Floor extends Place{
 	public Floor(String name,Person waiter) {
 		super(waiter);
 		this.name = name;
-		this.waiter = waiter;
+		this.waiter = waiter; // used to be null
 		
 	}
 

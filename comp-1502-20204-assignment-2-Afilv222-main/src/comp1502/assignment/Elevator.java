@@ -2,7 +2,7 @@ package comp1502.assignment;
 
 import java.util.ArrayList;
 
-public class Elevator {
+public class Elevator extends Place{
 
 	private enum Direction {MOVING_UP, MOVING_DOWN, HOLDING}; 
 	
@@ -16,12 +16,13 @@ public class Elevator {
 	
 	private Direction elevatorDirection;
 	
-	public Elevator(String name, ArrayList<Floor> floors) {
+	public Elevator(String name, ArrayList<Floor> floors,Person rider) {
+		super(rider);
 		this.name = name;
 		this.floors = floors;
 		this.currentFloor = floors.get(0);
 		this.destinationFloor = null;
-		this.rider = null;
+		this.rider = rider; // used to be null
 		this.elevatorDirection = Direction.HOLDING;
 		
 	}
@@ -37,27 +38,13 @@ public class Elevator {
 	public Floor getDestinationFloor() {
 		return destinationFloor;
 	}
-
-	public Person getPersonRiding() {
-		return rider;
-	}
-
+	
 	public boolean isMoving() {
 		return elevatorDirection != Direction.HOLDING;
 	}
 
 	public boolean isOnFloor(Floor floor) {
 		return currentFloor.equals(floor);
-		
-	}
-
-	public void enter(Person p) {
-		rider = p;
-		
-	}
-
-	public boolean hasPersonRiding() {
-		return rider != null;
 		
 	}
 
@@ -81,12 +68,6 @@ public class Elevator {
 		}
 	}
 	
-	public Person exit() {
-		Person exiter = rider;
-		rider = null;
-		return exiter;
-	}
-
 	public void move() { 
 		if (elevatorDirection == Direction.HOLDING) {
 			return;
@@ -107,6 +88,7 @@ public class Elevator {
 		}
 	}
 	
+	@Override
 	public String toString() {
 		if (rider == null) {
 			return name + "-Nobody";
