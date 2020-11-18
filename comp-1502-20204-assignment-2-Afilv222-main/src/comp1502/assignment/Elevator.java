@@ -7,7 +7,7 @@ public class Elevator {
 	private enum Direction {MOVING_UP, MOVING_DOWN, HOLDING}; 
 	
 	private String name;
-	private ArrayList<Floor> floors;
+	private ArrayList<Floor> floors; // Test
 	
 	private Floor currentFloor;
 	private Floor destinationFloor;
