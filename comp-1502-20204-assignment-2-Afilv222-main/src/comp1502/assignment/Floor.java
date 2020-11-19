@@ -3,7 +3,7 @@ package comp1502.assignment;
 public class Floor extends Place{
 
 	private String name;
-	private Person waiter;
+	//private Person waiter;
 	
 	/**
 	 * @param name
@@ -11,7 +11,7 @@ public class Floor extends Place{
 	public Floor(String name,Person waiter) {
 		super(waiter);
 		this.name = name;
-		this.waiter = waiter; // used to be null
+		//this.waiter = waiter; // used to be null
 		
 	}
 
@@ -24,9 +24,8 @@ public class Floor extends Place{
 
 	@Override
 	public String toString() {
-		if (waiter == null) {
-			return name + "-Nobody";
-		} 
-		return name + "-" + waiter.getName();
+	return name + super.toString(); 
 	}
+
+
 }

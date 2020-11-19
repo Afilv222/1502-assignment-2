@@ -90,10 +90,7 @@ public class Elevator extends Place{
 	
 	@Override
 	public String toString() {
-		if (rider == null) {
-			return name + "-Nobody";
-		} 
-		return name + "-" + rider.getName();
+		return name + super.toString();
 	}
 
 }

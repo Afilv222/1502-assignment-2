@@ -11,7 +11,7 @@ public class Place {
 	/**
 	 * @return the waiter
 	 */
-	public Person getPersonWaiting() { // Change method name
+	public Person getPerson() { 
 		return person;
 	}
 	
@@ -19,16 +19,16 @@ public class Place {
 	 * 
 	 * @return
 	 */
-	public boolean hasPersonWaiting() { // Change method name
+	public boolean hasPerson() {
 		return person != null;
 		
 	}
 	
-	public void arrive(Person newPerson) { // Change method name
+	public void arrive(Person newPerson) { 
 		person = newPerson;
 	}
 	
-	public Person depart() { // Change method name
+	public Person exit() { 
 		Person departer = person;
 		person = null;
 		return departer;
@@ -36,6 +36,11 @@ public class Place {
 	
 	
 	public String toString() {
-		return "";	
+		if (this.person == null) {
+			return "-Nobody";
+		} 
+		return "-" + person.getName();
+		
+		
 	}
 }
