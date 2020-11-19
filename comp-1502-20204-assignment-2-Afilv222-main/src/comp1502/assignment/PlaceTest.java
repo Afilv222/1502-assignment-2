@@ -51,7 +51,6 @@ class PlaceTest {
 		p.arrive(personOnFloor);
 		assertTrue(p.hasPerson());
 		assertEquals("Test-Afil", p.toString());
-		assertEquals("[1-Shreshth, 2-Nobody, 3-Nobody]",p.toString());
 	
 	}
 }
