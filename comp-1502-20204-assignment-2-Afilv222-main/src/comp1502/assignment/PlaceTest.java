@@ -11,7 +11,7 @@ class PlaceTest {
 	
 	@Test
 	void testConstructor() {
-		Person personOnFloor = new Person("Shreshth");
+		Person personOnFloor = new Person("Shreshth"); 
 		Place  place = new Place(personOnFloor);
 		ArrayList<Floor> floors = new ArrayList<>();
 		floors.add(new Floor("1",personOnFloor) );
@@ -82,7 +82,6 @@ class PlaceTest {
 	@Test
 	void testCall() {
 		Person personOnFloor = new Person("Afil");
-		Place  place = new Place(personOnFloor);
 		ArrayList<Floor> floors = new ArrayList<>();
 		floors.add(new Floor("1",null));
 		floors.add(new Floor("2",null));
