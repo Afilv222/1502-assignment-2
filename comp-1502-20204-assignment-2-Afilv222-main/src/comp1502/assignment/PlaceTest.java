@@ -35,7 +35,7 @@ class PlaceTest {
 	}
 	
 	@Test
-	void testEnter(){
+	void testEnterElevator(){
 		Person personOnFloor = new Person("Afil");
 		Place  place = new Place(personOnFloor);
 		ArrayList<Floor> floors = new ArrayList<>();
@@ -52,5 +52,107 @@ class PlaceTest {
 		assertTrue(p.hasPerson());
 		assertEquals("Test-Afil", p.toString());
 	
+	}
+	
+	@Test
+	void testExitElevator(){
+		Person personOnFloor = new Person("Afil");
+		Place  place = new Place(personOnFloor);
+		ArrayList<Floor> floors = new ArrayList<>();
+		floors.add(new Floor("1",personOnFloor) );
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
+		
+		assertTrue(place.hasPerson());
+		
+		String elevatorName = "Test";
+		
+		Place p = new Elevator(elevatorName, floors,null);
+		
+		p.arrive(personOnFloor);
+		assertTrue(p.hasPerson());
+		
+		p.exit();
+		assertFalse(p.hasPerson());
+		
+		assertEquals("Test-Nobody",p.toString());
+	}
+	
+	@Test
+	void testCall() {
+		Person personOnFloor = new Person("Afil");
+		Place  place = new Place(personOnFloor);
+		ArrayList<Floor> floors = new ArrayList<>();
+		floors.add(new Floor("1",null));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",personOnFloor));
+		
+		String name = "Test";
+		
+		Elevator e = new Elevator(name, floors,null);
+		e.call(floors.get(2));
+		assertEquals(floors.get(2), e.getDestinationFloor());
+	}
+	
+	@Test
+	void testMoveUp() {
+		Person personOnFloor = new Person("Afil");
+		Place  place = new Place(personOnFloor);
+		ArrayList<Floor> floors = new ArrayList<>();
+		floors.add(new Floor("1",personOnFloor));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
+		
+		String name = "Test";
+		
+		Elevator e = new Elevator(name, floors,null);
+		
+		e.call(floors.get(2));
+		e.move();
+		assertTrue(e.isMoving());
+		assertEquals(floors.get(1), e.getCurrentFloor());
+	}
+	
+	@Test
+	void testMoveUpStops() {
+		Person personOnFloor = new Person("Afil");
+		Place  place = new Place(personOnFloor);
+		ArrayList<Floor> floors = new ArrayList<>();
+		floors.add(new Floor("1",personOnFloor));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
+		
+		String name = "Test";
+		
+		Elevator e = new Elevator(name, floors,null);
+		
+		e.call(floors.get(2));
+		e.move();
+		e.move();
+		assertEquals(floors.get(2), e.getCurrentFloor());
+		assertFalse(e.isMoving());
+		
+	}
+	
+	@Test
+	void testMoveDown() {
+		Person personOnFloor = new Person("Afil");
+		Place  place = new Place(personOnFloor);
+		ArrayList<Floor> floors = new ArrayList<>();
+		floors.add(new Floor("1",personOnFloor));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
+		
+		String name = "Test";
+		
+		Elevator e = new Elevator(name, floors,null);
+		
+		e.call(floors.get(2));
+		e.move();
+		e.move();
+		e.call(floors.get(0));
+		assertTrue(e.isMoving());
+		e.move();
+		assertEquals(floors.get(1), e.getCurrentFloor());
 	}
 }
