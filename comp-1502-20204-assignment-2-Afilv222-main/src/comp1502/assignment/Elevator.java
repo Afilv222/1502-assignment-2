@@ -90,6 +90,7 @@ public class Elevator extends Place{
 	
 	
 	public int distance(Floor floor) {
+		
 		return -1; 
 	}
 	
