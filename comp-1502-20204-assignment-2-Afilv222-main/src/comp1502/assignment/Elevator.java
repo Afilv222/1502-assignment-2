@@ -8,9 +8,10 @@ public class Elevator extends Place{
 	
 	private String name;
 	private ArrayList<Floor> floors;
-	
+	//private ArrayList<Elevator> currentElevator; 
 	private Floor currentFloor;
 	private Floor destinationFloor;
+
 	
 	private Person rider;
 	
@@ -89,9 +90,17 @@ public class Elevator extends Place{
 	}
 	
 	
-	public int distance(Floor floor) {
+	public int distance(Floor givenFloor) {
+		int distance =0;
 		
-		return -1; 
+		distance = floors.indexOf(currentFloor) - floors.indexOf(givenFloor);
+	
+		if(distance < 0) {
+			 distance *= (-1);
+		}
+		
+		
+		return distance; 
 	}
 	
 	
