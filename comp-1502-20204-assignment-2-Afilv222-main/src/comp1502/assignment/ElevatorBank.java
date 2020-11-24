@@ -52,6 +52,9 @@ public class ElevatorBank {
 		}
 	}
 	
+	/**
+	 * This method should print out all the elevators and which floor each elevator is on. 
+	 */
 	public String toString() {
 		String listOfElevator = "";
 	
