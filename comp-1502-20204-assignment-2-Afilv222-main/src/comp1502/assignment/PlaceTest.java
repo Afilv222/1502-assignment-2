@@ -27,10 +27,6 @@ class PlaceTest {
 		
 		p.arrive(personOnFloor);
 		assertEquals(personOnFloor.getName(),p.getPerson().getName());
-		//assertEquals(floors.toString(),"");
-		//		assertEquals(elevatorName, e.getName());
-
-		//		assertTrue(place.hasPersonWaiting());
 		
 	}
 	
@@ -48,6 +44,7 @@ class PlaceTest {
 		String elevatorName = "Test";
 		
 		Place p = new Elevator(elevatorName, floors,null);
+		
 		p.arrive(personOnFloor);
 		assertTrue(p.hasPerson());
 		assertEquals("Test-Afil", p.toString());
