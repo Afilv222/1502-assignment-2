@@ -24,6 +24,7 @@ class ElevatorBankTest {
 		
 		ElevatorBank EB = new ElevatorBank(elevators);
 		
-		assertEquals("hi",EB.toString());
+		//assertEquals("Ele1-Nobody Elevator on floor: 2-Nobody Ele2-Nobody Elevator on floor: 4-Nobody",EB.toString());
+		assertEquals(elevators.get(0) + " " + "Elevator on floor: " + floors.get(1) + " " + elevators.get(1) + " " + "Elevator on floor: " + floors.get(3),EB.toString());
 	}
 }

@@ -29,11 +29,17 @@ public class ElevatorBank {
 	}
 	
 	public void move() {
-		
+		elevator.move();
 	}
 	
 	public String toString() {
-		//return elevators + " " +elevator.getCurrentFloor();
-		return elevators + "";
+		String listOfElevators = "";
+	
+			for(Elevator e:elevators) {
+				listOfElevators += ""+ e + " Elevator on floor: " + e.getCurrentFloor() + " ";
+			
+			}
+		
+		return listOfElevators.trim();
 	}
 }
