@@ -28,11 +28,11 @@ public class Elevator extends Place{
 		
 	}
 	
-	public Elevator(String name, ArrayList<Floor> floors,Person rider,Floor setFloor) {
+	public Elevator(String name, ArrayList<Floor> floors,Person rider,Floor setElevatorFloor) {
 		super(rider);
 		this.name = name;
 		this.floors = floors;
-		this.currentFloor = setFloor;
+		this.currentFloor = setElevatorFloor;
 		this.destinationFloor = null;
 		this.rider = rider; // used to be null
 		this.elevatorDirection = Direction.HOLDING;

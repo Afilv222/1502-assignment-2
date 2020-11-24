@@ -9,25 +9,25 @@ class FloorTest {
 	@Test
 	void testConstructor() {
 		String expectedName = "Test";
-		Floor f  = new Floor(expectedName);
+		Floor f  = new Floor(expectedName,null);
 		assertEquals(expectedName, f.getName());
-		assertNull(f.getPersonWaiting());
-		assertFalse(f.hasPersonWaiting());
+		assertNull(f.getPerson());
+		assertFalse(f.hasPerson());
 	}
 	
 	@Test
 	void testArrive() {
-		Floor f  = new Floor("Test");
+		Floor f  = new Floor("Test",null);
 		Person p = new Person("Tester");
 		f.arrive(p);
-		assertTrue(f.hasPersonWaiting());
-		assertEquals(p, f.getPersonWaiting());
+		assertTrue(f.hasPerson());
+		assertEquals(p, f.getPerson());
 	}
 	
 	@Test 
 	void testToStringWithoutPerson() {
 		String expectedName = "Test";
-		Floor f  = new Floor(expectedName);
+		Floor f  = new Floor(expectedName,null);
 		assertEquals(expectedName+"-Nobody", f.toString());
 	}
 	
@@ -35,7 +35,7 @@ class FloorTest {
 	void testToStringWithPerson() {
 		String expectedName = "Test";
 		String personName = "Alice";
-		Floor f  = new Floor(expectedName);
+		Floor f  = new Floor(expectedName,null);
 		Person p = new Person(personName);
 		f.arrive(p);
 		assertEquals(expectedName+"-"+personName, f.toString());
@@ -43,12 +43,12 @@ class FloorTest {
 	
 	@Test
 	void testDepart() {
-		Floor f  = new Floor("Test");
+		Floor f  = new Floor("Test",null);
 		Person p = new Person("Tester");
 		f.arrive(p);
-		Person exiter = f.depart();
-		assertFalse(f.hasPersonWaiting());
-		assertNull(f.getPersonWaiting());
+		Person exiter = f.exit();
+		assertFalse(f.hasPerson());
+		assertNull(f.getPerson());
 		assertEquals(p, exiter);
 	}
 

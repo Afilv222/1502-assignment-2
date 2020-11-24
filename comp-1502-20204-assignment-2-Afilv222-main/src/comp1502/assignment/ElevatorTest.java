@@ -11,17 +11,17 @@ class ElevatorTest {
 	@Test
 	void testConstructor() {
 		ArrayList<Floor> floors = new ArrayList<>();
-		floors.add(new Floor("1"));
-		floors.add(new Floor("2"));
-		floors.add(new Floor("3"));
+		floors.add(new Floor("1",null));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
 		
 		String name = "Test";
 		
-		Elevator e = new Elevator(name, floors);
+		Elevator e = new Elevator(name, floors,null);
 		assertEquals(name, e.getName());
 		assertEquals(floors.get(0), e.getCurrentFloor());
 		assertNull(e.getDestinationFloor());
-		assertNull(e.getPersonRiding());
+		assertNull(e.getPerson());
 		assertFalse(e.isMoving());
 		assertTrue(e.isOnFloor(floors.get(0)));
 		assertFalse(e.isOnFloor(floors.get(1)));
@@ -30,49 +30,50 @@ class ElevatorTest {
 	
 	@Test
 	void testEnter() {
+		Person p = new Person("Tester");
 		ArrayList<Floor> floors = new ArrayList<>();
-		floors.add(new Floor("1"));
-		floors.add(new Floor("2"));
-		floors.add(new Floor("3"));
+		floors.add(new Floor("1",p));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
 		
 		String name = "Test";
 		
-		Elevator e = new Elevator(name, floors);
-		Person p = new Person("Tester");
-		e.enter(p);
-		assertTrue(e.hasPersonRiding());
-		assertEquals(p, e.getPersonRiding());
+		Elevator e = new Elevator(name, floors,null);
+		
+		e.arrive(p);
+		assertTrue(e.hasPerson());
+		assertEquals(p, e.getPerson());
 	}
 	
 	@Test
 	void testExit() {
+		Person p = new Person("Tester");
 		ArrayList<Floor> floors = new ArrayList<>();
-		floors.add(new Floor("1"));
-		floors.add(new Floor("2"));
-		floors.add(new Floor("3"));
+		floors.add(new Floor("1",p));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
 		
 		String name = "Test";
 		
-		Elevator e = new Elevator(name, floors);
+		Elevator e = new Elevator(name, floors,null);
 		
-		Person p = new Person("Tester");
-		e.enter(p);
+		e.arrive(p);
 		Person exiter = e.exit();
-		assertFalse(e.hasPersonRiding());
-		assertNull(e.getPersonRiding());
+		assertFalse(e.hasPerson());
+		assertNull(e.getPerson());
 		assertEquals(p, exiter);
 	}
 	
 	@Test
 	void testCall() {
 		ArrayList<Floor> floors = new ArrayList<>();
-		floors.add(new Floor("1"));
-		floors.add(new Floor("2"));
-		floors.add(new Floor("3"));
+		floors.add(new Floor("1",null));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
 		
 		String name = "Test";
 		
-		Elevator e = new Elevator(name, floors);
+		Elevator e = new Elevator(name, floors,null);
 		e.call(floors.get(2));
 		assertEquals(floors.get(2), e.getDestinationFloor());
 	}
@@ -80,13 +81,13 @@ class ElevatorTest {
 	@Test
 	void testMoveUp() {
 		ArrayList<Floor> floors = new ArrayList<>();
-		floors.add(new Floor("1"));
-		floors.add(new Floor("2"));
-		floors.add(new Floor("3"));
+		floors.add(new Floor("1",null));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
 		
 		String name = "Test";
 		
-		Elevator e = new Elevator(name, floors);
+		Elevator e = new Elevator(name, floors,null);
 		
 		e.call(floors.get(2));
 		e.move();
@@ -97,13 +98,13 @@ class ElevatorTest {
 	@Test
 	void testMoveUpStops() {
 		ArrayList<Floor> floors = new ArrayList<>();
-		floors.add(new Floor("1"));
-		floors.add(new Floor("2"));
-		floors.add(new Floor("3"));
+		floors.add(new Floor("1",null));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
 		
 		String name = "Test";
 		
-		Elevator e = new Elevator(name, floors);
+		Elevator e = new Elevator(name, floors,null);
 		
 		e.call(floors.get(2));
 		e.move();
@@ -116,13 +117,13 @@ class ElevatorTest {
 	@Test
 	void testMoveDown() {
 		ArrayList<Floor> floors = new ArrayList<>();
-		floors.add(new Floor("1"));
-		floors.add(new Floor("2"));
-		floors.add(new Floor("3"));
+		floors.add(new Floor("1",null));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
 		
 		String name = "Test";
 		
-		Elevator e = new Elevator(name, floors);
+		Elevator e = new Elevator(name, floors,null);
 		
 		e.call(floors.get(2));
 		e.move();
@@ -136,14 +137,14 @@ class ElevatorTest {
 	@Test
 	void testMoveDownStops() {
 		ArrayList<Floor> floors = new ArrayList<>();
-		floors.add(new Floor("1"));
-		floors.add(new Floor("2"));
-		floors.add(new Floor("3"));
-		floors.add(new Floor("4"));
+		floors.add(new Floor("1",null));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
+		floors.add(new Floor("4",null));
 		
 		String name = "Test";
 		
-		Elevator e = new Elevator(name, floors);
+		Elevator e = new Elevator(name, floors,null);
 		
 		e.call(floors.get(3));
 		e.move();
@@ -158,29 +159,29 @@ class ElevatorTest {
 	@Test 
 	void testToStringWithoutPerson() {
 		ArrayList<Floor> floors = new ArrayList<>();
-		floors.add(new Floor("1"));
-		floors.add(new Floor("2"));
-		floors.add(new Floor("3"));
+		floors.add(new Floor("1",null));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
 		
 		String name = "Test";
 		
-		Elevator e = new Elevator(name, floors);
+		Elevator e = new Elevator(name, floors,null);
 		assertEquals(name+"-Nobody", e.toString());
 	}
 	
 	@Test 
 	void testToStringWithPerson() {
 		ArrayList<Floor> floors = new ArrayList<>();
-		floors.add(new Floor("1"));
-		floors.add(new Floor("2"));
-		floors.add(new Floor("3"));
+		floors.add(new Floor("1",null));
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
 		
 		String name = "Test";
 		
-		Elevator e = new Elevator(name, floors);
+		Elevator e = new Elevator(name, floors,null);
 		String personName = "Alice";
 		Person p = new Person(personName);
-		e.enter(p);
+		e.arrive(p);
 		assertEquals(name+"-"+personName, e.toString());
 	}
 
