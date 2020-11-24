@@ -5,7 +5,7 @@ public class ElevatorBank {
 
 	
 	private List<Elevator> elevators = new ArrayList<Elevator>();
-	private Elevator elevator; 
+	private Elevator elevator;
 	 
 	
 	public ElevatorBank(ArrayList<Elevator> elevators) {
@@ -16,7 +16,7 @@ public class ElevatorBank {
 	
 	public void call(Floor floor) {
 		int currentSmallestIndex = 0; 
-		
+	
 		for(int i = 0; i < elevators.size(); i++) {
 			
 			if(elevators.get(i).distance(floor) < elevators.get(currentSmallestIndex ).distance(floor)) {
@@ -25,11 +25,12 @@ public class ElevatorBank {
 	
 		}
 		 elevators.get(currentSmallestIndex).call(floor);
-		
 	}
 	
 	public void move() {
-		elevator.move();
+		for(Elevator e : elevators) {
+			e.move();
+		}
 	}
 	
 	public String toString() {

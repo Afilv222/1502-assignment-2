@@ -83,13 +83,13 @@ class ElevatorTest {
 		ArrayList<Floor> floors = new ArrayList<>();
 		floors.add(new Floor("1",null));
 		floors.add(new Floor("2",null));
-		floors.add(new Floor("3",null));
+		floors.add(new Floor("3",null)); 
 		
 		String name = "Test";
 		
 		Elevator e = new Elevator(name, floors,null);
 		
-		e.call(floors.get(2));
+		e.call(floors.get(2)); // floor 3
 		e.move();
 		assertTrue(e.isMoving());
 		assertEquals(floors.get(1), e.getCurrentFloor());
@@ -184,6 +184,24 @@ class ElevatorTest {
 		e.arrive(p);
 		assertEquals(name+"-"+personName, e.toString());
 	}
-
+	
+	@Test
+	void testDistanceMethod() {
+		Person personOnFloor = new Person("Shreshth"); 
+		Place  place = new Place(personOnFloor);
+		ArrayList<Floor> floors = new ArrayList<>();
+		
+		floors.add(new Floor("1",personOnFloor) );
+		floors.add(new Floor("2",null));
+		floors.add(new Floor("3",null));
+		floors.add(new Floor("4",null));
+		
+		Elevator elevator = new Elevator("Test",floors,null);
+		Elevator elevator2 = new Elevator("Test2",floors,null);
+		
+		assertEquals(3,elevator.distance(floors.get(3)));
+		assertEquals(2,elevator.distance(floors.get(2)));
+		
+	}
 	
 }
