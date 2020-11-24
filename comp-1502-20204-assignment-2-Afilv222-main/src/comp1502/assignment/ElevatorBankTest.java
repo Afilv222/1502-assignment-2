@@ -87,4 +87,9 @@ class ElevatorBankTest {
 		assertNull(elevators.get(1).getDestinationFloor());
 		assertEquals(floors.get(3),elevators.get(1).getCurrentFloor());
 	}
+	
+	@Test
+	void elevatorOnTheSameFloorAsTheCaller() {
+		
+	}
 }
