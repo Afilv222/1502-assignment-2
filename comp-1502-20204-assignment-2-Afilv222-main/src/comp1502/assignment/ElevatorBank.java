@@ -1,15 +1,26 @@
 package comp1502.assignment;
 import java.util.List;
 import java.util.ArrayList;
+
+/**
+ *ElevatorBank class should be able to allow several Elevators to serve
+ *the same set of floors. The ElevatorBank will generate multiple elevators 
+ *which will be able to move through out the building and floors. 
+ * @author afil_Vidyasagar
+ *
+ */
 public class ElevatorBank {
 
 	
-	private List<Elevator> elevators = new ArrayList<Elevator>();
+	private List<Elevator> listOfElevators = new ArrayList<Elevator>();
 	private Elevator elevator;
 	 
-	
+	/**
+	 * Created constructor which initialize the instance variables 
+	 * @param elevator euqal to the instance varibale elevator
+	 */
 	public ElevatorBank(ArrayList<Elevator> elevators) {
-		this.elevators = elevators;
+		this.listOfElevators = elevators;
 	}
 	
 	
@@ -17,18 +28,19 @@ public class ElevatorBank {
 	public void call(Floor floor) {
 		int currentSmallestIndex = 0; 
 	
-		for(int i = 0; i < elevators.size(); i++) {
+		for(int i = 0; i < listOfElevators.size(); i++) {
 			
-			if(elevators.get(i).distance(floor) < elevators.get(currentSmallestIndex ).distance(floor)) {
+			if(listOfElevators.get(i).distance(floor) < listOfElevators.get(currentSmallestIndex ).distance(floor)) {
 				currentSmallestIndex = i;
 			}
 	
 		}
-		 elevators.get(currentSmallestIndex).call(floor);
+		
+		listOfElevators.get(currentSmallestIndex).call(floor);
 	}
 	
 	public void move() {
-		for(Elevator e : elevators) {
+		for(Elevator e :listOfElevators) {
 			e.move();
 		}
 	}
