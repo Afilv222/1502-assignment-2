@@ -17,14 +17,18 @@ public class ElevatorBank {
 	 
 	/**
 	 * Created constructor which initialize the instance variables 
-	 * @param elevator euqal to the instance varibale elevator
+	 * @param elevators equals to the instance variable listOfElevators
 	 */
 	public ElevatorBank(ArrayList<Elevator> elevators) {
 		this.listOfElevators = elevators;
 	}
 	
 	
-	
+	/**
+	 * The call method will determine which elevator is the nearest to the floor that was called. 
+	 * The least amount of distance from the floor should be the elevator called. 
+	 * @param floor
+	 */
 	public void call(Floor floor) {
 		int currentSmallestIndex = 0; 
 	
@@ -39,6 +43,9 @@ public class ElevatorBank {
 		listOfElevators.get(currentSmallestIndex).call(floor);
 	}
 	
+	/**
+	 * The move method will move every elevator that is created.
+	 */
 	public void move() {
 		for(Elevator e :listOfElevators) {
 			e.move();
@@ -46,13 +53,13 @@ public class ElevatorBank {
 	}
 	
 	public String toString() {
-		String listOfElevators = "";
+		String listOfElevator = "";
 	
-			for(Elevator e:elevators) {
-				listOfElevators += ""+ e + " Elevator on floor: " + e.getCurrentFloor() + " ";
+			for(Elevator e:listOfElevators) {
+				listOfElevator += ""+ e + " Elevator on floor: " + e.getCurrentFloor() + " ";
 			
 			}
 		
-		return listOfElevators.trim();
+		return listOfElevator.trim();
 	}
 }
