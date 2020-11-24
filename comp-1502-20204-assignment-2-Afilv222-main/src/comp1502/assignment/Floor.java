@@ -5,9 +5,7 @@ public class Floor extends Place{
 	private String name;
 	//private Person waiter;
 	
-	/**
-	 * @param name
-	 */
+	
 	public Floor(String name,Person waiter) {
 		super(waiter);
 		this.name = name;
@@ -15,9 +13,7 @@ public class Floor extends Place{
 		
 	}
 
-	/**
-	 * @return the name
-	 */
+	
 	public String getName() {
 		return name;
 	}
