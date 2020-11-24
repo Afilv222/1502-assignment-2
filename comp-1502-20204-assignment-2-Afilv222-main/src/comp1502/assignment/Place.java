@@ -1,5 +1,9 @@
 package comp1502.assignment;
-
+/**
+ * This 
+ * @author afil_Vidyasagar
+ *
+ */
 public class Place { 
 	private Person person; 
 	

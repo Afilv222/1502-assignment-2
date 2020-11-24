@@ -78,10 +78,11 @@ class ElevatorBankTest {
 		
 		EB.call(floors.get(0));
 		EB.move();
+		EB.move();
 		
 		assertTrue(elevators.get(0).isMoving());
 		assertEquals(floors.get(0),elevators.get(0).getDestinationFloor());
-		assertEquals(floors.get(2),elevators.get(0).getCurrentFloor());
+		assertEquals(floors.get(1),elevators.get(0).getCurrentFloor());
 		
 		assertFalse(elevators.get(1).isMoving());
 		assertNull(elevators.get(1).getDestinationFloor());
@@ -90,6 +91,30 @@ class ElevatorBankTest {
 	
 	@Test
 	void elevatorOnTheSameFloorAsTheCaller() {
+		Person personOnFloor = new Person("Shreshth"); 
+		Place  place = new Place(personOnFloor);
+		ArrayList<Floor> floors = new ArrayList<>();
 		
+		floors.add(new Floor("1",personOnFloor) ); // Ele1 should be here
+		floors.add(new Floor("2",null));  /// Ele2 should be here 
+		floors.add(new Floor("3",null));
+		floors.add(new Floor("4",null)); 
+		
+		ArrayList<Elevator> elevators = new ArrayList<Elevator>();
+		elevators.add(new Elevator("Ele1",floors,null,floors.get(0)));
+		elevators.add(new Elevator("Ele2",floors,null,floors.get(1)));
+		
+		ElevatorBank EB = new ElevatorBank(elevators);
+		
+		EB.call(floors.get(0));
+		EB.move();
+		
+		assertFalse(elevators.get(0).isMoving());
+		assertEquals(floors.get(0),elevators.get(0).getDestinationFloor());
+		assertEquals(floors.get(0),elevators.get(0).getCurrentFloor());
+		
+		assertFalse(elevators.get(1).isMoving());
+		assertNull(elevators.get(1).getDestinationFloor());
+		assertEquals(floors.get(1),elevators.get(1).getCurrentFloor());
 	}
 }
