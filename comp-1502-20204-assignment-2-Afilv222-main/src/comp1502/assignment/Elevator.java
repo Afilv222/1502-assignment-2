@@ -27,7 +27,18 @@ public class Elevator extends Place{
 		this.elevatorDirection = Direction.HOLDING;
 		
 	}
-
+	
+	public Elevator(String name, ArrayList<Floor> floors,Person rider,Floor setFloor) {
+		super(rider);
+		this.name = name;
+		this.floors = floors;
+		this.currentFloor = setFloor;
+		this.destinationFloor = null;
+		this.rider = rider; // used to be null
+		this.elevatorDirection = Direction.HOLDING;
+		
+	}
+	
 	public String getName() {
 		return name;
 	}

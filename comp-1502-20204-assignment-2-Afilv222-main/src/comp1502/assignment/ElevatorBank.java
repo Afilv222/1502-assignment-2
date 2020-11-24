@@ -33,6 +33,7 @@ public class ElevatorBank {
 	}
 	
 	public String toString() {
-		return "";
+		//return elevators + " " +elevator.getCurrentFloor();
+		return elevators + "";
 	}
 }
