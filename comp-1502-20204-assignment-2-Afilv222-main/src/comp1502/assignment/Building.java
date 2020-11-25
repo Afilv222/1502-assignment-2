@@ -78,12 +78,13 @@ public class Building {
 	 * 
 	 */
 	public void simulate() {
+		Elevator elevator = null;
 		if (state.equals(SimulationState.CALLING)) {
 			// we'll find the person and have them call 
 			// we're doing it this way since it will help with later versions
 			for (Floor floor : floors) {
 				if (floor.hasPerson()) {
-					elevatorBank.call(floor);
+					elevator = elevatorBank.call(floor);
 					System.out.println(floor.getPerson().getName() 
 							+ " has called the elevator to floor " 
 							+ floor.getName());
@@ -91,6 +92,7 @@ public class Building {
 				}
 			}
 		} else if (state.equals(SimulationState.RIDING)) {
+
 			if (!elevator.isMoving()) {
 				// let the person off and send the elevator away
 				Floor f = elevator.getCurrentFloor();
@@ -107,7 +109,7 @@ public class Building {
 				elevator.call(next);
 				state = SimulationState.AFTER;
 			} else {
-				System.out.println(elevator.getPersonRiding().getName() 
+				System.out.println(elevator.getPerson().getName() 
 						+ " has is riding the elevator and is at floor " 
 						+ elevator.getCurrentFloor().getName());
 			}
@@ -117,12 +119,16 @@ public class Building {
 				Floor f = elevator.getCurrentFloor();
 				System.out.println("Elevator has arrived at floor " + elevator.getCurrentFloor().getName() 
 					+ " and " + f.getPerson().getName() + " has stepped on."); 
-				elevator.enter(f.depart());
-				Floor next = floors.get(random.nextInt(floors.size() - 1));
 				
-				System.out.println(elevator.getPersonRiding().getName()
+				Person currentPerson = f.getPerson(); 
+				
+				elevator.arrive(f.exit());
+				Floor next = floors.get(random.nextInt(floors.size() - 1));
+		
+				System.out.println(elevator.getPerson().getName()
 						+ " has called the elevator to floor " + next.getName());
-				elevator.call(next);
+				currentPerson.setDestination(next, elevator);
+				
 				state = SimulationState.RIDING;
 			}
 		} else if (state.equals(SimulationState.AFTER)) {
@@ -152,12 +158,12 @@ public class Building {
 		for (Floor f: floors) {
 			b.append(f.toString());
 			b.append("|");
-			if (elevator.isOnFloor(f)) {
-				b.append(elevator.toString());
+			if (elevatorBank.isOnFloor(f)) {
+				b.append(elevatorBank.toString());
 			}
 			b.append(System.lineSeparator());
 		}
-		b.append("Elevator destination:" + elevator.getDestinationFloor());
+		b.append("Elevator destination:" + elevatorBank.getDestinationFloor());
 		return b.toString();
 		
 	}
