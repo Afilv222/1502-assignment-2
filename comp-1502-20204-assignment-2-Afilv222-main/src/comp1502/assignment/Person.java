@@ -3,7 +3,7 @@ package comp1502.assignment;
 public class Person {
 	
 	private String name; 
-
+	
 	/**
 	 * @param name
 	 */
@@ -18,4 +18,7 @@ public class Person {
 		return name;
 	}
 	
+	public void setDestination(Floor floor,Elevator elevator) {
+		elevator.call(floor);
+	}
 }
