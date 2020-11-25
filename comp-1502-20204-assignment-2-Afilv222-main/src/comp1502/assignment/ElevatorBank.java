@@ -29,7 +29,7 @@ public class ElevatorBank {
 	 * The least amount of distance from the floor should be the elevator called. 
 	 * @param floor
 	 */
-	public void call(Floor floor) {
+	public Elevator call(Floor floor) { // should be return elevator 
 		int currentSmallestIndex = 0; 
 	
 		for(int i = 0; i < listOfElevators.size(); i++) {
@@ -40,7 +40,9 @@ public class ElevatorBank {
 	
 		}
 		
-		listOfElevators.get(currentSmallestIndex).call(floor);
+		Elevator e = listOfElevators.get(currentSmallestIndex);
+		e.call(floor);
+		return e;
 	}
 	
 	/**

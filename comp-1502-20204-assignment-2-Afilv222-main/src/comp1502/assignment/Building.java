@@ -24,7 +24,7 @@ public class Building {
 	/**
 	 * The building's elevator
 	 */
-	private Elevator elevator;
+	private ElevatorBank elevatorBank;
 	
 	/**
 	 * The current state the elevator can be in
@@ -50,11 +50,11 @@ public class Building {
 	 */
 	public Building(String name, 
 			List<Floor> floors,
-			Elevator elevator,
+			ElevatorBank elevatorBank,
 			Person p) {
 		this.name = name;
 		this.floors = floors;
-		this.elevator = elevator;
+		this.elevatorBank = elevatorBank;
 		floors.get(0).arrive(p);
 		state = SimulationState.CALLING;
 		random = new Random();
@@ -82,9 +82,9 @@ public class Building {
 			// we'll find the person and have them call 
 			// we're doing it this way since it will help with later versions
 			for (Floor floor : floors) {
-				if (floor.hasPersonWaiting()) {
-					elevator.call(floor);
-					System.out.println(floor.getPersonWaiting().getName() 
+				if (floor.hasPerson()) {
+					elevatorBank.call(floor);
+					System.out.println(floor.getPerson().getName() 
 							+ " has called the elevator to floor " 
 							+ floor.getName());
 					state = SimulationState.WAITING;
@@ -95,7 +95,7 @@ public class Building {
 				// let the person off and send the elevator away
 				Floor f = elevator.getCurrentFloor();
 				f.arrive(elevator.exit());
-				System.out.println(f.getPersonWaiting().getName() 
+				System.out.println(f.getPerson().getName() 
 						+ " has has gotten off the elevator at floor " 
 						+ elevator.getCurrentFloor().getName());
 				
@@ -116,7 +116,7 @@ public class Building {
 				// let the person on and send the elevator to a random floor
 				Floor f = elevator.getCurrentFloor();
 				System.out.println("Elevator has arrived at floor " + elevator.getCurrentFloor().getName() 
-					+ " and " + f.getPersonWaiting().getName() + " has stepped on."); 
+					+ " and " + f.getPerson().getName() + " has stepped on."); 
 				elevator.enter(f.depart());
 				Floor next = floors.get(random.nextInt(floors.size() - 1));
 				

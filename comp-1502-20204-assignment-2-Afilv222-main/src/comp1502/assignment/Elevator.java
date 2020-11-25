@@ -60,7 +60,7 @@ public class Elevator extends Place{
 		
 	}
 
-	public void call(Floor floor) {
+	public void call(Floor floor) { 
 		this.destinationFloor = floor;
 		
 		setElevatorDirection();
