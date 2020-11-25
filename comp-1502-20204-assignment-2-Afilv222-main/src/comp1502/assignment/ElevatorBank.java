@@ -14,7 +14,7 @@ public class ElevatorBank {
 	
 	private List<Elevator> listOfElevators = new ArrayList<Elevator>();
 	private Elevator elevator;
-	 
+	
 	/**
 	 * Created constructor which initialize the instance variables 
 	 * @param elevators equals to the instance variable listOfElevators
@@ -54,6 +54,13 @@ public class ElevatorBank {
 		}
 	}
 	
+	public boolean isOnFloor(Floor floor) {
+		return elevator.isOnFloor(floor);
+	}
+	
+	public Floor getDestinationFloor() {
+		return elevator.getDestinationFloor();
+	}
 	/**
 	 * This method should print out all the elevators and which floor each elevator is on. 
 	 */
@@ -62,7 +69,6 @@ public class ElevatorBank {
 	
 			for(Elevator e:listOfElevators) {
 				listOfElevator += ""+ e + " Elevator on floor: " + e.getCurrentFloor() + " ";
-			
 			}
 		
 		return listOfElevator.trim();
